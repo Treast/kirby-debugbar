@@ -2,7 +2,20 @@
   "name": "treast/kirby-debugbar",
   "description": "PHP Debug Bar for KirbyCMS",
   "type": "kirby-plugin",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "keywords": [
+    "kirby",
+    "kirbycms",
+    "debugbar",
+    "profiler",
+    "debug"
+  ],
+  "homepage": "https://github.com/Treast/kirby-debugbar",
+  "support": {
+    "issues": "https://github.com/Treast/kirby-debugbar/issues",
+    "source": "https://github.com/Treast/kirby-debugbar"
+  },
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "Treast\\KirbyDebugbar\\": "src/"
@@ -11,7 +24,9 @@
   "authors": [
     {
       "name": "Vincent Riva",
-      "email": "vincent.riva@outlook.fr"
+      "email": "vincent.riva@outlook.fr",
+      "homepage": "https://www.vincentriva.fr",
+      "role": "Developer"
     }
   ],
   "require": {
