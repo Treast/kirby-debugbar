@@ -1,0 +1,24 @@
+{
+  "name": "treast/kirby-debugbar",
+  "description": "PHP Debug Bar for KirbyCMS",
+  "type": "kirby-plugin",
+  "version": "0.1.0",
+  "autoload": {
+    "psr-4": {
+      "Treast\\KirbyDebugbar\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Vincent Riva",
+      "email": "vincent.riva@outlook.fr"
+    }
+  ],
+  "require": {
+    "maximebf/debugbar": "^1.18",
+    "getkirby/composer-installer": "^1.2"
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
