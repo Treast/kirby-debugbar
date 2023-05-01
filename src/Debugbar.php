@@ -15,7 +15,7 @@ use DebugBar\DataCollector\RequestDataCollector;
 use DebugBar\DebugBar as DebugBarDebugBar;
 use Treast\KirbyDebugbar\DataCollector\EventCollector;
 use Treast\KirbyDebugbar\DataCollector\FileCollector;
-use Treast\KirbyDebugbar\DataCollector\PageCollector;
+use Treast\KirbyDebugbar\DataCollector\VariableCollector;
 
 class Debugbar
 {
@@ -31,6 +31,7 @@ class Debugbar
         self::$debugbar->addCollector(new ConfigCollector($config));
         self::$debugbar->addCollector(new EventCollector());
         self::$debugbar->addCollector(new FileCollector());
+        self::$debugbar->addCollector(new VariableCollector());
         self::$debugbar->addCollector(new PhpInfoCollector());
         self::$debugbar->addCollector(new RequestDataCollector());
         self::$debugbar->addCollector(new MemoryCollector());
@@ -102,13 +103,8 @@ class Debugbar
         self::$debugbar->getCollector('files')->addFiles($type, $files);
     }
 
-    public static function startPage($name, $label, $channel = 'pages')
+    public static function logVariables($content, $channel = 'variables')
     {
-        self::$debugbar->getCollector($channel)->startMeasure($name, $label);
-    }
-
-    public static function stopPage($name, $channel = 'pages')
-    {
-        if (self::$debugbar->getCollector($channel)->hasStartedMeasure($name)) self::$debugbar->getCollector($channel)->stopMeasure($name);
+        self::$debugbar->getCollector($channel)->setContent($content);
     }
 }

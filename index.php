@@ -15,6 +15,7 @@ Kirby::plugin('treast/debugbar', [
             \Treast\KirbyDebugbar\Debugbar::logFiles('Children', array_column(array_map(function ($child) {
                 return $child['content'];
             }, $page->children()->toArray()), 'title'));
+            \Treast\KirbyDebugbar\Debugbar::logVariables($page->content()->data());
             return $data;
         },
         '*:after' => function (\Kirby\Cms\Event $event) {
