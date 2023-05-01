@@ -7,8 +7,11 @@ Kirby::plugin('treast/debugbar', [
         'system.loadPlugins:after' => function () {
             \Treast\KirbyDebugbar\Debugbar::init();
         },
+        '*:after' => function (\Kirby\Cms\Event $event) {
+            \Treast\KirbyDebugbar\Debugbar::log($event);
+        },
     ],
     'snippets' => [
-        'debugbar' => __DIR__ . '/snippets/debugbar.php'
+        'debugbar.footer' => __DIR__ . '/snippets/footer.php'
     ]
 ]);

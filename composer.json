@@ -15,10 +15,13 @@
     }
   ],
   "require": {
-    "maximebf/debugbar": "^1.18",
+    "maximebf/debugbar": "^1.18.2",
     "getkirby/composer-installer": "^1.2"
   },
   "config": {
-    "optimize-autoloader": true
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
   }
 }
