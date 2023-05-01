@@ -60,6 +60,16 @@ class Debugbar
         self::log($data, 'alert', $channel);
     }
 
+    public static function error($data, $channel = 'messages')
+    {
+        self::log($data, 'error', $channel);
+    }
+
+    public static function warning($data, $channel = 'messages')
+    {
+        self::log($data, 'warning', $channel);
+    }
+
     public static function critical($data, $channel = 'messages')
     {
         self::log($data, 'critical', $channel);
