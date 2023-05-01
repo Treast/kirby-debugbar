@@ -14,6 +14,7 @@ use DebugBar\DataCollector\PhpInfoCollector;
 use DebugBar\DataCollector\RequestDataCollector;
 use DebugBar\DebugBar as DebugBarDebugBar;
 use Treast\KirbyDebugbar\DataCollector\EventCollector;
+use Treast\KirbyDebugbar\DataCollector\FileCollector;
 use Treast\KirbyDebugbar\DataCollector\PageCollector;
 
 class Debugbar
@@ -29,6 +30,7 @@ class Debugbar
         self::$debugbar->addCollector(new MessagesCollector());
         self::$debugbar->addCollector(new ConfigCollector($config));
         self::$debugbar->addCollector(new EventCollector());
+        self::$debugbar->addCollector(new FileCollector());
         self::$debugbar->addCollector(new PhpInfoCollector());
         self::$debugbar->addCollector(new RequestDataCollector());
         self::$debugbar->addCollector(new MemoryCollector());
@@ -93,6 +95,11 @@ class Debugbar
     public static function logException(\Exception $e)
     {
         self::$debugbar->getCollector('exceptions')->addException($e);
+    }
+
+    public static function logFiles(string $type, array $files)
+    {
+        self::$debugbar->getCollector('files')->addFiles($type, $files);
     }
 
     public static function startPage($name, $label, $channel = 'pages')

@@ -9,6 +9,14 @@ Kirby::plugin('treast/debugbar', [
         'system.loadPlugins:after' => function () {
             \Treast\KirbyDebugbar\Debugbar::init(kirby());
         },
+        'page.render:before' => function (string $contentType, array $data, \Kirby\Cms\Page $page) {
+            \Treast\KirbyDebugbar\Debugbar::logFiles('Content', $page->contentFiles());
+            \Treast\KirbyDebugbar\Debugbar::logFiles('Files', array_column($page->files()->toArray(), 'url'));
+            \Treast\KirbyDebugbar\Debugbar::logFiles('Children', array_column(array_map(function ($child) {
+                return $child['content'];
+            }, $page->children()->toArray()), 'title'));
+            return $data;
+        },
         '*:after' => function (\Kirby\Cms\Event $event) {
             \Treast\KirbyDebugbar\Debugbar::logEvent($event);
         },
