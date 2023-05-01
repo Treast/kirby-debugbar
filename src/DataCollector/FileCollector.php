@@ -40,7 +40,7 @@ class FileCollector extends DataCollector implements Renderable
         foreach ($this->files as $type => $file) {
             $data[$type] = $this->getDataFormatter()->formatVar($file);
         }
-        dump($this->files);
+
         return $data;
     }
 
