@@ -5,10 +5,13 @@
 Kirby::plugin('treast/debugbar', [
     'hooks' => [
         'system.loadPlugins:after' => function () {
-            \Treast\KirbyDebugbar\Debugbar::init();
+            \Treast\KirbyDebugbar\Debugbar::init(kirby());
         },
         '*:after' => function (\Kirby\Cms\Event $event) {
-            \Treast\KirbyDebugbar\Debugbar::log($event);
+            \Treast\KirbyDebugbar\Debugbar::logEvent($event);
+        },
+        'system.exception' => function (Throwable $exception) {
+            if ($exception instanceof Exception) \Treast\KirbyDebugbar\Debugbar::logException($exception);
         },
     ],
     'snippets' => [
