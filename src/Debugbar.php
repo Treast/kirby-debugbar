@@ -13,6 +13,7 @@ use DebugBar\DataCollector\MessagesCollector;
 use DebugBar\DataCollector\PhpInfoCollector;
 use DebugBar\DataCollector\RequestDataCollector;
 use DebugBar\DebugBar as DebugBarDebugBar;
+
 use Treast\KirbyDebugbar\DataCollector\EventCollector;
 use Treast\KirbyDebugbar\DataCollector\FileCollector;
 use Treast\KirbyDebugbar\DataCollector\VariableCollector;
