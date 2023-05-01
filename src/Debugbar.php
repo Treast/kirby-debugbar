@@ -2,6 +2,10 @@
 
 namespace Treast\KirbyDebugbar;
 
+use Kirby\Cms\App;
+use Kirby\Cms\Event;
+use Kirby\Filesystem\F;
+
 use DebugBar\DataCollector\ConfigCollector;
 use DebugBar\DataCollector\ExceptionsCollector;
 use DebugBar\DataCollector\MemoryCollector;
@@ -14,12 +18,12 @@ use Treast\KirbyDebugbar\DataCollector\PageCollector;
 
 class Debugbar
 {
-    protected static $debugbar;
-    protected static $kirby;
+    protected static DebugBarDebugBar $debugbar;
+    protected static App $kirby;
 
-    public static function init($kirby)
+    public static function init(App $kirby)
     {
-        $config = \F::load($kirby->root('config') . '/config.php');
+        $config = F::load($kirby->root('config') . '/config.php');
 
         self::$debugbar = new DebugBarDebugBar();
         self::$debugbar->addCollector(new MessagesCollector());
@@ -36,28 +40,58 @@ class Debugbar
         return self::$debugbar->getJavascriptRenderer($baseUrl);
     }
 
-    public static function logEvent($event)
+    public static function log($data, $label = 'info', $channel = 'messages')
+    {
+        self::$debugbar->getCollector($channel)->addMessage($data, $label);
+    }
+
+    public static function debug($data, $channel = 'messages')
+    {
+        self::log($data, 'debug', $channel);
+    }
+
+    public static function emergency($data, $channel = 'messages')
+    {
+        self::log($data, 'emergency', $channel);
+    }
+
+    public static function alert($data, $channel = 'messages')
+    {
+        self::log($data, 'alert', $channel);
+    }
+
+    public static function critical($data, $channel = 'messages')
+    {
+        self::log($data, 'critical', $channel);
+    }
+
+    public static function notice($data, $channel = 'messages')
+    {
+        self::log($data, 'notice', $channel);
+    }
+
+    public static function info($data, $channel = 'messages')
+    {
+        self::log($data, 'info', $channel);
+    }
+
+    public static function logEvent(Event $event)
     {
         self::log($event, 'info', 'events');
     }
 
-    public static function log($data, $label = 'info', $channel = 'messages')
+    public static function logException(\Exception $e)
     {
-        self::$debugbar[$channel]->addMessage($data, $label);
+        self::$debugbar->getCollector('exceptions')->addException($e);
     }
 
     public static function startPage($name, $label, $channel = 'pages')
     {
-        self::$debugbar[$channel]->startMeasure($name, $label);
+        self::$debugbar->getCollector($channel)->startMeasure($name, $label);
     }
 
     public static function stopPage($name, $channel = 'pages')
     {
-        if (self::$debugbar[$channel]->hasStartedMeasure($name)) self::$debugbar[$channel]->stopMeasure($name);
-    }
-
-    public static function logException($e)
-    {
-        self::$debugbar->getCollector('exceptions')->addException($e);
+        if (self::$debugbar->getCollector($channel)->hasStartedMeasure($name)) self::$debugbar->getCollector($channel)->stopMeasure($name);
     }
 }

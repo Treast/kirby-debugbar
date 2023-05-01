@@ -2,6 +2,8 @@
 
 @include_once __DIR__ . '/vendor/autoload.php';
 
+use Kirby\Cms\App as Kirby;
+
 Kirby::plugin('treast/debugbar', [
     'hooks' => [
         'system.loadPlugins:after' => function () {
