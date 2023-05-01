@@ -26,6 +26,6 @@ Kirby::plugin('treast/debugbar', [
         },
     ],
     'snippets' => [
-        'debugbar.footer' => __DIR__ . '/snippets/footer.php'
+        'debugbar' => __DIR__ . '/snippets/debugbar.php'
     ]
 ]);
