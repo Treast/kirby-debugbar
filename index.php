@@ -22,5 +22,10 @@ Kirby::plugin('treast/debugbar', [
     ],
     'snippets' => [
         'debugbar' => __DIR__ . '/snippets/debugbar.php'
+    ],
+    'siteMethods' => [
+        'logger' => function () {
+            return \Treast\KirbyDebugbar\Debugbar::getLogger();
+        }
     ]
 ]);

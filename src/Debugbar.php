@@ -21,12 +21,15 @@ use Treast\KirbyDebugbar\DataCollector\VariableCollector;
 
 class Debugbar
 {
-    protected static DebugBarDebugBar $debugbar;
     protected static App $kirby;
+    protected static Logger $logger;
+    protected static DebugBarDebugBar $debugbar;
 
     public static function init(App $kirby)
     {
         $config = F::load($kirby->root('config') . '/config.php');
+
+        self::$logger = new Logger();
 
         self::$debugbar = new DebugBarDebugBar();
         self::$debugbar->addCollector(new MessagesCollector('logs'));
@@ -38,6 +41,11 @@ class Debugbar
         self::$debugbar->addCollector(new RequestDataCollector());
         self::$debugbar->addCollector(new MemoryCollector());
         self::$debugbar->addCollector(new ExceptionsCollector());
+    }
+
+    public static function getLogger()
+    {
+        return self::$logger;
     }
 
     public static function getRenderer($baseUrl = null)

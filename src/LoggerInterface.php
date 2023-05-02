@@ -11,7 +11,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function emergency(mixed $data, string $channel);
+    public function emergency(mixed $data, string $channel);
 
     /**
      * Action must be taken immediately.
@@ -23,7 +23,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function alert(mixed $data, string $channel);
+    public function alert(mixed $data, string $channel);
 
     /**
      * Critical conditions.
@@ -34,7 +34,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function critical(mixed $data, string $channel);
+    public function critical(mixed $data, string $channel);
 
     /**
      * Runtime errors that do not require immediate action but should typically
@@ -44,7 +44,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function error(mixed $data, string $channel);
+    public function error(mixed $data, string $channel);
 
     /**
      * Exceptional occurrences that are not errors.
@@ -56,7 +56,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function warning(mixed $data, string $channel);
+    public function warning(mixed $data, string $channel);
 
     /**
      * Normal but significant events.
@@ -65,7 +65,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function notice(mixed $data, string $channel);
+    public function notice(mixed $data, string $channel);
 
     /**
      * Interesting events.
@@ -76,7 +76,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function info(mixed $data, string $channel);
+    public function info(mixed $data, string $channel);
 
     /**
      * Detailed debug information.
@@ -85,7 +85,7 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function debug(mixed $data, string $channel);
+    public function debug(mixed $data, string $channel);
 
     /**
      * Logs with an arbitrary level.
@@ -95,5 +95,5 @@ interface LoggerInterface
      * @param string $channel
      * @return void
      */
-    public static function log(string $level, mixed $data, string $channel);
+    public function log(string $level, mixed $data, string $channel);
 }
