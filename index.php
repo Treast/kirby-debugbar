@@ -10,12 +10,7 @@ Kirby::plugin('treast/debugbar', [
             \Treast\KirbyDebugbar\Debugbar::init(kirby());
         },
         'page.render:before' => function (string $contentType, array $data, \Kirby\Cms\Page $page) {
-            \Treast\KirbyDebugbar\Debugbar::logFiles('Content', $page->contentFiles());
-            \Treast\KirbyDebugbar\Debugbar::logFiles('Files', array_column($page->files()->toArray(), 'url'));
-            \Treast\KirbyDebugbar\Debugbar::logFiles('Children', array_column(array_map(function ($child) {
-                return $child['content'];
-            }, $page->children()->toArray()), 'title'));
-            \Treast\KirbyDebugbar\Debugbar::logVariables($page->content()->data());
+            \Treast\KirbyDebugbar\Debugbar::logPage($page);
             return $data;
         },
         '*:after' => function (\Kirby\Cms\Event $event) {

@@ -3,6 +3,7 @@
 namespace Treast\KirbyDebugbar;
 
 use Kirby\Cms\App;
+use Kirby\Cms\Page;
 use Kirby\Cms\Event;
 use Kirby\Filesystem\F;
 
@@ -59,13 +60,23 @@ class Debugbar
         self::$debugbar->getCollector('exceptions')->addException($e);
     }
 
-    public static function logFiles(string $type, array $files)
+    private static function logFiles(string $type, array $files)
     {
         self::$debugbar->getCollector('files')->addFiles($type, $files);
     }
 
-    public static function logVariables($content, $channel = 'variables')
+    private static function logVariables($content)
     {
-        self::$debugbar->getCollector($channel)->setContent($content);
+        self::$debugbar->getCollector('variables')->setContent($content);
+    }
+
+    public static function logPage(Page $page)
+    {
+        self::logFiles('Content', $page->contentFiles());
+        self::logFiles('Files', array_column($page->files()->toArray(), 'url'));
+        self::logFiles('Children', array_column(array_map(function ($child) {
+            return $child['content'];
+        }, $page->children()->toArray()), 'title'));
+        self::logVariables($page->content()->data());
     }
 }
