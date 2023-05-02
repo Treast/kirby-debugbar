@@ -18,10 +18,15 @@
 ### Git submodule
 
     git submodule add https://github.com/Treast/kirby-debugbar.git site/plugins/debugbar
+    cd site/plugins/debugbar/
+    composer install
 
 ### Manual
 
 Download this [zip](https://github.com/Treast/kirby-debugbar/archive/refs/heads/main.zip) and unzip it in `site/plugins/debugbar`.
+
+    cd site/plugins/debugbar/
+    composer install
 
 ## 💻 Usage
 
