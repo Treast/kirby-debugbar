@@ -28,7 +28,7 @@ class Debugbar
         $config = F::load($kirby->root('config') . '/config.php');
 
         self::$debugbar = new DebugBarDebugBar();
-        self::$debugbar->addCollector(new MessagesCollector());
+        self::$debugbar->addCollector(new MessagesCollector('logs'));
         self::$debugbar->addCollector(new ConfigCollector($config));
         self::$debugbar->addCollector(new EventCollector());
         self::$debugbar->addCollector(new FileCollector());
@@ -44,49 +44,9 @@ class Debugbar
         return self::$debugbar->getJavascriptRenderer($baseUrl);
     }
 
-    public static function log($data, $label = 'info', $channel = 'messages')
+    public static function log($data, $label = 'info', $channel = 'logs')
     {
         self::$debugbar->getCollector($channel)->addMessage($data, $label);
-    }
-
-    public static function debug($data, $channel = 'messages')
-    {
-        self::log($data, 'debug', $channel);
-    }
-
-    public static function emergency($data, $channel = 'messages')
-    {
-        self::log($data, 'emergency', $channel);
-    }
-
-    public static function alert($data, $channel = 'messages')
-    {
-        self::log($data, 'alert', $channel);
-    }
-
-    public static function error($data, $channel = 'messages')
-    {
-        self::log($data, 'error', $channel);
-    }
-
-    public static function warning($data, $channel = 'messages')
-    {
-        self::log($data, 'warning', $channel);
-    }
-
-    public static function critical($data, $channel = 'messages')
-    {
-        self::log($data, 'critical', $channel);
-    }
-
-    public static function notice($data, $channel = 'messages')
-    {
-        self::log($data, 'notice', $channel);
-    }
-
-    public static function info($data, $channel = 'messages')
-    {
-        self::log($data, 'info', $channel);
     }
 
     public static function logEvent(Event $event)
