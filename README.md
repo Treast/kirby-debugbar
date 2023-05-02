@@ -32,15 +32,15 @@ Add this snippet at the bottom of your footer & enjoy !
 ### How to log ?
 
 ```php
-\Treast\KirbyDebugbar\Logger::debug('This is a debug');
-\Treast\KirbyDebugbar\Logger::emergency('This is an emergency');
-\Treast\KirbyDebugbar\Logger::error('This is an error');
-\Treast\KirbyDebugbar\Logger::critical('This is a critical');
-\Treast\KirbyDebugbar\Logger::info('This is an info');
-\Treast\KirbyDebugbar\Logger::warning('This is a warning');
-\Treast\KirbyDebugbar\Logger::alert('This is an alert');
-\Treast\KirbyDebugbar\Logger::notice('This is a notice');
-\Treast\KirbyDebugbar\Logger::log('debug', 'This is a notice');
+$site->logger()->debug('This is a debug');
+$site->logger()->emergency('This is an emergency');
+$site->logger()->error('This is an error');
+$site->logger()->critical('This is a critical');
+$site->logger()->info('This is an info');
+$site->logger()->warning('This is a warning');
+$site->logger()->alert('This is an alert');
+$site->logger()->notice('This is a notice');
+$site->logger()->log('debug', 'This is also a debug');
 ```
 
 ## To Do
