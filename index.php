@@ -20,12 +20,23 @@ Kirby::plugin('treast/debugbar', [
             if ($exception instanceof Exception) \Treast\KirbyDebugbar\Debugbar::logException($exception);
         },
     ],
+    'pageMethods' => [
+        'logger' => function () {
+            return \Treast\KirbyDebugbar\Debugbar::getLogger();
+        },
+        'debugbar' => function () {
+            return $this->logger();
+        },
+    ],
     'snippets' => [
         'debugbar' => __DIR__ . '/snippets/debugbar.php'
     ],
     'siteMethods' => [
         'logger' => function () {
             return \Treast\KirbyDebugbar\Debugbar::getLogger();
-        }
-    ]
+        },
+        'debugbar' => function () {
+            return site()->logger();
+        },
+    ],
 ]);
