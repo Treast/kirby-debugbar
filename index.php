@@ -38,6 +38,15 @@ Kirby::plugin('treast/debugbar', [
     'siteMethods' => [
         'logger' => function () {
             return \Treast\KirbyDebugbar\Debugbar::getLogger();
-        }
-    ]
+        },
+        'log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)
+    ],
+    'pageMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'pagesMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'fieldMethods' => ['log' => fn ($field) => \Treast\KirbyDebugbar\Debugbar::logUtils($field)],
+    'fileMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'filesMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'userMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'usersMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
+    'collectionMethods' => ['log' => fn () => \Treast\KirbyDebugbar\Debugbar::logUtils($this)],
 ]);

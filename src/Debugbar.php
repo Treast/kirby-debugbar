@@ -53,6 +53,12 @@ class Debugbar
         return self::$debugbar->getJavascriptRenderer($baseUrl);
     }
 
+    public static function logUtils(mixed $data)
+    {
+        self::log($data, 'debug');
+        return $data;
+    }
+
     public static function log($data, $label = 'info', $channel = 'logs')
     {
         if (option('treast.debugbar.tabs.logs')) self::$debugbar->getCollector($channel)->addMessage($data, $label);
