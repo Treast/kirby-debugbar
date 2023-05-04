@@ -41,6 +41,9 @@ $site->logger()->warning('This is a warning');
 $site->logger()->alert('This is an alert');
 $site->logger()->notice('This is a notice');
 $site->logger()->log('debug', 'This is also a debug');
+// Or you can chain with the ->log() function
+$site->log()->title()->log();
+$page->children()->log()->first()->log();
 ```
 
 ### Options
@@ -92,6 +95,7 @@ return [
 
 - To [@maximebf](https://www.github.com/maximebf) for the base package [php-debugbar](https://github.com/maximebf/php-debugbar).
 - To [@barryvdh](https://www.github.com/barryvdh) for his [implementation on Laravel](https://github.com/barryvdh/laravel-debugbar).
+- To [@genxbe](https://www.github.com/genxbe) for his chaining methods [on his plugin](https://github.com/genxbe/kirby3-ray).
 
 ## ⚠️Warning
 
