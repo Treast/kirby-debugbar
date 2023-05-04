@@ -5,6 +5,18 @@
 use Kirby\Cms\App as Kirby;
 
 Kirby::plugin('treast/debugbar', [
+    'options' => [
+        'force' => false,
+        'tabs' => [
+            'logs' => true,
+            'config' => true,
+            'events' => true,
+            'files' => true,
+            'variables' => true,
+            'request' => true,
+            'exceptions' => true
+        ]
+    ],
     'hooks' => [
         'system.loadPlugins:after' => function () {
             \Treast\KirbyDebugbar\Debugbar::init(kirby());
