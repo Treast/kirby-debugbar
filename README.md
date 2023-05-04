@@ -18,15 +18,10 @@
 ### Git submodule
 
     git submodule add https://github.com/Treast/kirby-debugbar.git site/plugins/debugbar
-    cd site/plugins/debugbar/
-    composer install
 
 ### Manual
 
 Download this [zip](https://github.com/Treast/kirby-debugbar/archive/refs/heads/main.zip) and unzip it in `site/plugins/debugbar`.
-
-    cd site/plugins/debugbar/
-    composer install
 
 ## 💻 Usage
 
@@ -48,9 +43,45 @@ $site->logger()->notice('This is a notice');
 $site->logger()->log('debug', 'This is also a debug');
 ```
 
+### Options
+
+#### Explanations
+
+| Option name                      | Default | Type      | Description                                                        |
+| -------------------------------- | ------- | --------- | ------------------------------------------------------------------ |
+| `treast.debugbar.force`          | `false` | `boolean` | If enabled, will display the debug bar even with `debug === false` |
+| `treast.debugbar.tabs.logs`      | `true`  | `boolean` | Show logs tab                                                      |
+| `treast.debugbar.tabs.config`    | `true`  | `boolean` | Show config tab                                                    |
+| `treast.debugbar.tabs.events`    | `true`  | `boolean` | Show events tab                                                    |
+| `treast.debugbar.tabs.files`     | `true`  | `boolean` | Show files tab                                                     |
+| `treast.debugbar.tabs.variables` | `true`  | `boolean` | Show variables tab                                                 |
+| `treast.debugbar.tabs.request`   | `true`  | `boolean` | Show request tab                                                   |
+| `treast.debugbar.tabs.exception` | `true`  | `boolean` | Show exceptions tab                                                |
+
+#### config.php
+
+```php
+<?php
+
+return [
+  'treast.debugbar' => [
+    'force' => false,
+    'tabs' => [
+      'logs' => true,
+      'config' => true,
+      'events' => true,
+      'files' => true,
+      'variables' => true,
+      'request' => true,
+      'exceptions' => true
+    ]
+  ]
+];
+```
+
 ## To Do
 
-- Only activate plugin when `debug === true`
+- ~~Only activate plugin when `debug === true`~~
 - Refactoring 😮‍💨
 
 ## 💡 I would like XXX but it's not yet available?
