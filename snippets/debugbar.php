@@ -1,8 +1,8 @@
 <?php
 
-if (option('debug')) {
-  use Treast\KirbyDebugbar\Debugbar;
+use Treast\KirbyDebugbar\Debugbar;
 
+if (option('debug')) {
   $renderer = Debugbar::getRenderer('/media/plugins/treast/debugbar');
 
   echo Debugbar::getRenderer()->renderHead();
