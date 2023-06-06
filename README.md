@@ -27,7 +27,7 @@ Download this [zip](https://github.com/Treast/kirby-debugbar/archive/refs/heads/
 
 Add this snippet at the bottom of your footer & enjoy !
 
-    <?= snippet('debugbar') =>
+    <?= snippet('debugbar') ?>
 
 ### How to log ?
 
