@@ -11,6 +11,18 @@
 
 ## 🔌 Installation
 
+⚠️ This plugin uses the Symfony VarDumper package, which conflicts with the KirbyCMS dump function. To use this plugin, you must imperatively change the `index.php` file at the root by this content:
+
+```php
+<?php
+
+define('KIRBY_HELPER_DUMP', false);
+
+require __DIR__ . '/kirby/bootstrap.php';
+
+echo (new Kirby)->render();
+```
+
 ### Composer (highly recommended)
 
     composer require treast/kirby-debugbar
