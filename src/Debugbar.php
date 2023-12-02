@@ -87,7 +87,7 @@ class Debugbar
     public static function logPage(Page $page)
     {
         if (option('treast.debugbar.tabs.files')) {
-            self::logFiles('Content', $page->contentFiles());
+            self::logFiles('Content', $page->content()->toArray());
             self::logFiles('Files', array_column($page->files()->toArray(), 'url'));
             self::logFiles('Children', array_column(array_map(function ($child) {
                 return $child['content'];
