@@ -61,32 +61,32 @@ class Debugbar
 
     public static function log($data, $label = 'info', $channel = 'logs')
     {
-        if (option('treast.debugbar.tabs.logs')) self::$debugbar->getCollector($channel)->addMessage($data, $label);
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.logs')) self::$debugbar->getCollector($channel)->addMessage($data, $label);
     }
 
     public static function logEvent(Event $event)
     {
-        if (option('treast.debugbar.tabs.events')) self::log($event, 'info', 'events');
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.events')) self::log($event, 'info', 'events');
     }
 
     public static function logException(\Exception $e)
     {
-        if (option('treast.debugbar.tabs.exceptions')) self::$debugbar->getCollector('exceptions')->addException($e);
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.exceptions')) self::$debugbar->getCollector('exceptions')->addException($e);
     }
 
     private static function logFiles(string $type, array $files)
     {
-        if (option('treast.debugbar.tabs.files')) self::$debugbar->getCollector('files')->addFiles($type, $files);
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.files')) self::$debugbar->getCollector('files')->addFiles($type, $files);
     }
 
     private static function logVariables($content)
     {
-        if (option('treast.debugbar.tabs.variables')) self::$debugbar->getCollector('variables')->setContent($content);
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.variables')) self::$debugbar->getCollector('variables')->setContent($content);
     }
 
     public static function logPage(Page $page)
     {
-        if (option('treast.debugbar.tabs.files')) {
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.files')) {
             self::logFiles('Content', $page->content()->toArray());
             self::logFiles('Files', array_column($page->files()->toArray(), 'url'));
             self::logFiles('Children', array_column(array_map(function ($child) {
@@ -94,6 +94,6 @@ class Debugbar
             }, $page->children()->toArray()), 'title'));
         }
 
-        if (option('treast.debugbar.tabs.variables')) self::logVariables($page->content()->data());
+        if ((option('debug') || option('treast.debugbar.force')) && option('treast.debugbar.tabs.variables')) self::logVariables($page->content()->data());
     }
 }
