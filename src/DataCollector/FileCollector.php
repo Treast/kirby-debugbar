@@ -24,7 +24,7 @@ class FileCollector extends DataCollector implements Renderable
     public function addFiles(string $type, array $files)
     {
         foreach ($files as $file) {
-            $this->addFile($type, $file);
+            if (is_string($file)) $this->addFile($type, $file);
         }
     }
 
