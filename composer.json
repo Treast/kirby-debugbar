@@ -2,7 +2,7 @@
   "name": "treast/kirby-debugbar",
   "description": "PHP Debug Bar for KirbyCMS",
   "type": "kirby-plugin",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "keywords": [
     "kirby",
     "kirbycms",
